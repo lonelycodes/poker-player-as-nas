@@ -7,8 +7,11 @@ class PlayerTests(unittest.TestCase):
         game_state = {
             'in_action': 0,
             'small_blind': 3,
+            'current_buy_in': 10,
             'players': [
-                { 'hole_cards': [
+                { 
+                    'bet': 10,
+                    'hole_cards': [
                         {
                             'rank': '2',
                             'suit': 'hearts'
@@ -29,8 +32,10 @@ class PlayerTests(unittest.TestCase):
         game_state = {
             'in_action': 0,
             'small_blind': 3,
+            'current_buy_in': 10,
             'players': [
                 { 
+                    'bet': 10,
                     'hole_cards': [
                         {
                             'rank': '2',
@@ -47,6 +52,32 @@ class PlayerTests(unittest.TestCase):
             }
         
         self.assertEqual(player.betRequest(game_state), 3)
+
+    def test_call_amount_larger_100_checks(self):
+        player = Player()
+        game_state = {
+            'in_action': 0,
+            'small_blind': 3,
+            'current_buy_in': 10,
+            'players': [
+                { 
+                    'bet': 100,
+                    'hole_cards': [
+                        {
+                            'rank': '2',
+                            'suit': 'hearts'
+                        },
+                        {
+                            'rank': '3',
+                            'suit': 'spades'
+                        }
+                    ]
+                }
+            ]
+                
+            }
+        
+        self.assertEqual(player.betRequest(game_state), 0)
 
 if __name__ == '__main__':
     unittest.main()
