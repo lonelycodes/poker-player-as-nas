@@ -1,4 +1,4 @@
-import itertools
+import http.client
 
 class Player:
     VERSION = "Default Python folding player"
@@ -61,7 +61,7 @@ class Player:
         if my_player['bet'] > 0.1 * my_player['stack']:
             return 0
 
-        return 0
+        return game_state['small_blind'] * 2
 
 
     # def round_1_strategy(self, game_state):
@@ -135,6 +135,8 @@ class Player:
         print("HIGH CARD DETECTOR: ", card['rank'], is_high_card)
         return is_high_card
 
-
+    # def get_odds(self, my_cards, known_cards):
+    #     conn = http.client.HTTPSConnection("localhost", 8080)
+        
     
 
