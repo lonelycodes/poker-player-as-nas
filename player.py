@@ -15,7 +15,7 @@ class Player:
                 return 0
 
             if (self.is_pair(my_cards[0], my_cards[1])):
-                return 1000
+                return 200
 
             return game_state['small_blind']
         except:
