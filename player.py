@@ -31,7 +31,7 @@ class Player:
             if self.is_high_card(my_cards[0]):
                 return my_player['stack']
             else:
-                if(call_amount < 500) and my_player['bet'] < 0.1 * my_player['stack']: 
+                if(call_amount < 500) and my_player['bet'] < 0.2 * my_player['stack']: 
                     return call_amount + game_state['minimum_raise'] + 1
                 else:
                     return 0
