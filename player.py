@@ -22,7 +22,7 @@ class Player:
         active_players = 0
         for player in game_state['players']:
             if player['status'] == 'active':
-                active_players ++ 1
+                active_players += 1
         if active_players == 2 and (self.is_high_card(my_cards[0]) or self.is_high_card(my_cards[1])):
             return my_player['stack']
 
