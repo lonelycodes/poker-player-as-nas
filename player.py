@@ -17,6 +17,8 @@ class Player:
         print('call_amount:', call_amount)
         print('minimum_raise', game_state['minimum_raise']) 
 
+        
+
         if (self.has_n_tuple_with_my_card(my_cards, all_cards, 4) != None):
             return my_player['stack']
 
@@ -50,10 +52,7 @@ class Player:
             if self.is_high_card(my_card_contributing_to_pair):
                 return call_amount + game_state['minimum_raise'] + 1
 
-        if len(community_cards) == 0:
-            return game_state['small_blind'] * 2
-
-        if(call_amount > 100):    
+        if my_player['bet'] > 0.1 * my_player['stack']:
             return 0
 
         return call_amount
