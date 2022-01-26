@@ -15,6 +15,9 @@ class Player:
             print('my_cards:', my_cards)
             print('community_cards:', community_cards)
 
+            if (self.has_n_tuple_with_my_card(my_cards, all_cards, 4)):
+                return my_player['stack']
+
             if (self.has_n_tuple_with_my_card(my_cards, all_cards, 3)):
                 return my_player['stack']
 
