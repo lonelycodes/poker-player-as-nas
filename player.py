@@ -7,7 +7,7 @@ class Player:
         if (self.is_pair(my_cards[0], my_cards[1])):
             return 1000
 
-        return 10
+        return 4
 
     def showdown(self, game_state):
         pass
