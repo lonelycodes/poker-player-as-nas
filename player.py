@@ -5,18 +5,26 @@ class Player:
 
     def betRequest(self, game_state):
         print(game_state)
+        community_cards = game_state['community_cards']
+
+        if len(community_cards) == 0:
+            return self.round_1_strategy(game_state)
+
+        if len(community_cards) == 3:
+            return self.round_1_strategy(game_state)
+
+        if len(community_cards) == 4:
+            return self.round_1_strategy(game_state)
+
+        if len(community_cards) == 5:
+            return self.round_1_strategy(game_state)
+
+    def round_1_strategy(self, game_state):
         my_player = game_state['players'][game_state['in_action']]
         call_amount = game_state['current_buy_in'] - my_player['bet']
         my_cards = my_player['hole_cards']
         community_cards = game_state['community_cards']
         all_cards =  my_cards + community_cards
-        current_round = game_state['round']
-        print('current_round:', current_round)
-        print('my_cards:', my_cards)
-        print('community_cards:', community_cards)
-        print('call_amount:', call_amount)
-        print('minimum_raise', game_state['minimum_raise']) 
-
         if (self.has_n_tuple_with_my_card(my_cards, all_cards, 4) != None):
             return my_player['stack']
 
@@ -40,11 +48,6 @@ class Player:
                 print('betting for 2 high cards: ', call_amount + game_state['minimum_raise'] + 10)
                 return call_amount + game_state['minimum_raise'] + 10
 
-        # if self.is_high_card(my_cards[0]) or self.is_high_card(my_cards[1]):
-        #     if(call_amount < 200):
-        #         print('betting for at least 1 high cards: ', call_amount + game_state['minimum_raise'] + 1)
-        #         return call_amount + game_state['minimum_raise'] + 1
-
         my_card_contributing_to_pair = self.has_n_tuple_with_my_card(my_cards, all_cards, 2)
         if (my_card_contributing_to_pair != None and call_amount < 200):
             if self.is_high_card(my_card_contributing_to_pair):
@@ -58,21 +61,17 @@ class Player:
 
         return call_amount
 
+    def round_2_strategy(self, game_state):
+        pass
 
-    # def round_1_strategy(self, game_state):
-    #     pass
+    def round_3_strategy(self, game_state):
+        pass
 
-    # def round_2_strategy(self, game_state):
-    #     pass
+    def round_4_strategy(self, game_state):
+        pass
 
-    # def round_3_strategy(self, game_state):
-    #     pass
-
-    # def round_4_strategy(self, game_state):
-    #     pass
-
-    # def round_5_strategy(self, game_state):
-    #     pass
+    def round_5_strategy(self, game_state):
+        pass
 
     def showdown(self, game_state):
         pass
