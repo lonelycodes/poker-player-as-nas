@@ -44,6 +44,10 @@ class Player:
                 print('betting for 2 high cards: ', call_amount + game_state['minimum_raise'] + 10)
                 return call_amount + game_state['minimum_raise'] + 10
 
+        if (self.is_high_card(my_cards[0]) and self.is_high_card(my_cards[1])) and len(community_cards) == 0:
+            if(call_amount < 300 and my_player['bet'] > 0.1 * my_player['stack']): 
+                return call_amount
+
         # if self.is_high_card(my_cards[0]) or self.is_high_card(my_cards[1]):
         #     if(call_amount < 200):
         #         print('betting for at least 1 high cards: ', call_amount + game_state['minimum_raise'] + 1)
