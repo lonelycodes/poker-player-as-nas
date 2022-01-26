@@ -22,8 +22,8 @@ class Player:
                 print('bet (call amount larger than 100): 0')
                 return 0
 
-            print('bet (small blind): ', game_state['small_blind'])
-            return game_state['small_blind']
+            print('bet (call_amount): ', call_amount)
+            return call_amount
         except:
             return 1
 
