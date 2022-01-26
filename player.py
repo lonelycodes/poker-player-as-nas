@@ -17,10 +17,10 @@ class Player:
         print('call_amount:', call_amount)
         print('minimum_raise', game_state['minimum_raise']) 
 
-        if (self.has_n_tuple_with_my_card(my_cards, all_cards, 4)):
+        if (self.has_n_tuple_with_my_card(my_cards, all_cards, 4) != None):
             return my_player['stack']
 
-        if (self.has_n_tuple_with_my_card(my_cards, all_cards, 3)):
+        if (self.has_n_tuple_with_my_card(my_cards, all_cards, 3) != None):
             return my_player['stack']
 
         if (self.is_pair(my_cards[0], my_cards[1])):
@@ -37,11 +37,15 @@ class Player:
                 print('betting for 2 high cards: ', call_amount + game_state['minimum_raise'] + 10)
                 return call_amount + game_state['minimum_raise'] + 10
 
-        if self.is_high_card(my_cards[0]) or self.is_high_card(my_cards[1]):
-            if(call_amount < 200):
-                print('betting for at least 1 high cards: ', call_amount + game_state['minimum_raise'] + 11)
-                return call_amount + game_state['minimum_raise'] + 1
+        # if self.is_high_card(my_cards[0]) or self.is_high_card(my_cards[1]):
+        #     if(call_amount < 200):
+        #         print('betting for at least 1 high cards: ', call_amount + game_state['minimum_raise'] + 1)
+        #         return call_amount + game_state['minimum_raise'] + 1
 
+        my_card_contributing_to_pair = self.has_n_tuple_with_my_card(my_cards, all_cards, 2)
+        if (my_card_contributing_to_pair != None and call_amount < 200):
+            if self.is_high_card(my_card_contributing_to_pair):
+                return call_amount + game_state['minimum_raise'] + 1
 
         if len(community_cards) == 0:
             return game_state['small_blind'] * 2
@@ -82,17 +86,38 @@ class Player:
 
         for key in card_groups.keys():
             if card_groups[key] == n and key in my_values:
-                return True
+                for card in my_cards:
+                    if card['rank'] == key:
+                        return card
 
-        return False
+        return None
 
     def has_flush_with_one_of_my_cards(self, my_cards, all_cards):
-        suits = { 'clubs': 0, 'spades': 0, 'hearts': 0, 'diamonds': 0 }
+        suits_group = { 'clubs': 0, 'spades': 0, 'hearts': 0, 'diamonds': 0 }
         my_suits = [card['suit'] for card in my_cards]
+
         for card in all_cards:
-            if card['suit'] in my_suits:
+            suits_group[card['suit']] += 1
+
+        for key in suits_group.keys():
+            if suits_group[key] is 5 and key in my_suits:
                 return True
         return False
+
+    def has_flush_with_both_of_my_cards(self, my_cards, all_cards):
+        suits_group = { 'clubs': 0, 'spades': 0, 'hearts': 0, 'diamonds': 0 }
+        my_suits = [card['suit'] for card in my_cards]
+
+        for card in all_cards:
+            suits_group[card['suit']] += 1
+
+        for key in suits_group.keys():
+            if suits_group[key] is 5 and key in my_suits and self.is_pair(my_cards[0], my_cards[1]):
+                return True
+        return False
+
+    def has_straight(slef, my_cards, all_cards):
+        pass
         
     def is_pair(self, card1, card2):
         return card1['rank'] == card2['rank']
