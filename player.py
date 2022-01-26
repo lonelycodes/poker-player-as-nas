@@ -8,20 +8,35 @@ class Player:
             my_cards = my_player['hole_cards']
             community_cards = game_state['community_cards']
             current_round = game_state['round']
+            print('current_round:', current_round)
+            print('my_cards:', my_cards)
+            print('community_cards:', community_cards)
 
             if (self.is_pair(my_cards[0], my_cards[1])):
                 if self.is_high_card(my_cards[0]):
                     print('bet (is high pair): 1000')
                     return 1000
                 else:
-                    print('bet (is pair): 200')
-                    return 200
+                    if(call_amount < 500): 
+                        return call_amount + 1
+                    else:
+                        return 0
 
-            if current_round == 0:
+            if len(community_cards) == 0 and len(my_cards) == 2:
+                self.round_1_strategy(game_state)
+            
+            if len(community_cards) == 3:
+                self.round_2_strategy(game_state)
+
+            if len(community_cards) == 4:
+                self.round_3_strategy(game_state)
+
+            if len(community_cards) == 5:
+                self.round_4_strategy(game_state)
+
+            if len(community_cards) == 0:
                 print('bet: ', game_state['small_blind'] * 2)
                 return game_state['small_blind'] * 2
-
-            print('call amount: ', call_amount)
 
             if(call_amount > 100):    
                 print('bet (call amount larger than 100): 0')
@@ -32,11 +47,26 @@ class Player:
         except:
             return 1
 
+    def round_1_strategy(self, game_state):
+        pass
+
+    def round_2_strategy(self, game_state):
+        pass
+
+    def round_3_strategy(self, game_state):
+        pass
+
+    def round_4_strategy(self, game_state):
+        pass
+
+    def round_5_strategy(self, game_state):
+        pass
+
     def showdown(self, game_state):
         pass
 
     def has_triplet(cards):
-        return
+        return False
 
     def is_pair(self, card1, card2):
         return card1['rank'] == card2['rank']
