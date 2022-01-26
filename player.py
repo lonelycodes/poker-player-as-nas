@@ -5,8 +5,8 @@ class Player:
 
     def betRequest(self, game_state):
         print(game_state)
-        call_amount = game_state['current_buy_in'] - game_state['players'][game_state['in_action']]['bet']
         my_player = game_state['players'][game_state['in_action']]
+        call_amount = game_state['current_buy_in'] - my_player['bet']
         my_cards = my_player['hole_cards']
         community_cards = game_state['community_cards']
         all_cards =  my_cards + community_cards
