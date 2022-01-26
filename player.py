@@ -14,6 +14,7 @@ class Player:
             print('current_round:', current_round)
             print('my_cards:', my_cards)
             print('community_cards:', community_cards)
+            print('call_amount:', call_amount)
 
             if (self.has_n_tuple_with_my_card(my_cards, all_cards, 4)):
                 return my_player['stack']
@@ -26,17 +27,19 @@ class Player:
                     return my_player['stack']
                 else:
                     if(call_amount < 500): 
-                        return call_amount + 1
+                        return call_amount + game_state['minimum_raise'] + 1
                     else:
                         return 0
 
             if self.is_high_card(my_cards[0]) and self.is_high_card(my_cards[1]):
                 if(call_amount < 300): 
-                        return call_amount + 10
+                        print('betting for 2 high cards: ', call_amount + game_state['minimum_raise'] + 10)
+                        return call_amount + game_state['minimum_raise'] + 10
 
             if self.is_high_card(my_cards[0]) or self.is_high_card(my_cards[1]):
-                if(call_amount < 200): 
-                        return call_amount + 1
+                if(call_amount < 200):
+                    print('betting for at least 1 high cards: ', call_amount + game_state['minimum_raise'] + 11)
+                    return call_amount + game_state['minimum_raise'] + 1
 
             # if len(community_cards) == 0 and len(my_cards) == 2:
             #     self.round_1_strategy(game_state)
@@ -94,7 +97,13 @@ class Player:
 
         return False
 
-    #def has_flush_with_one_of_my_cards(self)
+    # def has_flush_with_one_of_my_cards(self, my_cards, all_cards):
+    #     suits = { 'clubs': 0, 'spades': 0, 'hearts': 0, 'diamonds': 0 }
+    #     my_suits = [card['suit'] for card in my_cards]
+    #     for card in all_cards:
+    #         if card['suit'] in my_suits:
+    #             return True
+    #     return False
         
     def is_pair(self, card1, card2):
         return card1['rank'] == card2['rank']
