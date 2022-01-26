@@ -14,7 +14,7 @@ class Player:
 
             print('call amount: ', call_amount)
             if(call_amount > 100):    
-                print('bet (call amount larger than 100): '0)
+                print('bet (call amount larger than 100): ', call_amount)
                 return 0
 
             if (self.is_pair(my_cards[0], my_cards[1])):
