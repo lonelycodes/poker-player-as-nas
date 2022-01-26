@@ -57,7 +57,7 @@ class Player:
         if my_player['bet'] > 0.1 * my_player['stack']:
             return 0
 
-        return call_amount
+        return 0
 
 
     # def round_1_strategy(self, game_state):
