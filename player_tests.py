@@ -44,7 +44,7 @@ class PlayerTests(unittest.TestCase):
                 
             }
         
-        self.assertEqual(player.betRequest(game_state), 0)
+        self.assertEqual(player.betRequest(game_state), 10)
 
 if __name__ == '__main__':
     unittest.main()
