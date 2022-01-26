@@ -26,7 +26,7 @@ class Player:
 
             if self.is_high_card(my_cards[0]) and self.is_high_card(my_cards[1]):
                 if(call_amount < 300): 
-                        return call_amount + 1
+                        return call_amount + 10
 
             if self.is_high_card(my_cards[0]) or self.is_high_card(my_cards[1]):
                 if(call_amount < 200): 
@@ -75,13 +75,21 @@ class Player:
     def showdown(self, game_state):
         pass
 
-    # def has_triplet_with_my_card(my_cards, all_cards):
-    #     card_groups = dict()
-    #     for card in all_cards:
-    #         card_groups[]
+    def has_triplet_with_my_card(my_cards, all_cards):
+        card_groups = dict()
+        my_values = [card['value'] for card in my_cards]
 
-    #     # returncards.GroupBy(card=> card.Rank).Count(group=> group.Count() == 2) == 1;
-    #     x = dict((k, list(g)))
+        for card in all_cards:
+            if card['value'] in card_groups.keys():
+                card_groups[card['value']] += 1
+            else:
+                card_groups[card['value']] = 1
+
+        for key in card_groups.keys():
+            if card_groups[key] == 3 and key in my_values:
+                return True
+
+        return False
         
 
 
