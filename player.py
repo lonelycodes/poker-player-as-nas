@@ -61,7 +61,8 @@ class Player:
                 return 0
 
             return call_amount
-        except:
+        except Exception as e:
+            print(e.with_traceback)
             return 1
 
     # def round_1_strategy(self, game_state):
