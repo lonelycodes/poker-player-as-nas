@@ -82,9 +82,6 @@ class Player:
         pass
 
     def has_n_tuple_with_my_card(self, my_cards, all_cards, n):
-        my_cards = sorted(my_cards)[::-1]
-        all_cards = sorted(all_cards)[::-1]
-
         card_groups = dict()
         my_values = [card['rank'] for card in my_cards]
 
