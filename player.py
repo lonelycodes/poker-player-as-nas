@@ -1,4 +1,5 @@
-import http.client
+import urllib.request
+import urllib.parse
 
 class Player:
     VERSION = "Default Python folding player"
@@ -108,7 +109,7 @@ class Player:
             suits_group[card['suit']] += 1
 
         for key in suits_group.keys():
-            if suits_group[key] is 5 and key in my_suits:
+            if suits_group[key] == 5 and key in my_suits:
                 return True
         return False
 
@@ -120,7 +121,7 @@ class Player:
             suits_group[card['suit']] += 1
 
         for key in suits_group.keys():
-            if suits_group[key] is 5 and key in my_suits and self.is_pair(my_cards[0], my_cards[1]):
+            if suits_group[key] == 5 and key in my_suits and self.is_pair(my_cards[0], my_cards[1]):
                 return True
         return False
 
@@ -135,8 +136,11 @@ class Player:
         print("HIGH CARD DETECTOR: ", card['rank'], is_high_card)
         return is_high_card
 
-    # def get_odds(self, my_cards, known_cards):
-    #     conn = http.client.HTTPSConnection("localhost", 8080)
+    # def get_odds(self, cards):
+    #     url = "http://rainman.leanpoker.org/rank?cards=" + cards
+    #     f = urllib.request.urlopen(url)
+    #     print(f.read().decode('utf-8'))
+        
         
     
 
