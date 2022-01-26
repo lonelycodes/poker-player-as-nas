@@ -15,7 +15,7 @@ class Player:
             if (self.is_pair(my_cards[0], my_cards[1])):
                 if self.is_high_card(my_cards[0]):
                     print('bet (is high pair): 1000')
-                    return 1000
+                    return my_player['stack']
                 else:
                     if(call_amount < 500): 
                         return call_amount + 1
