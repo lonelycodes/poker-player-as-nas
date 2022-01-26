@@ -38,17 +38,17 @@ class Player:
                 if(call_amount < 200): 
                         return call_amount + 1
 
-            if len(community_cards) == 0 and len(my_cards) == 2:
-                self.round_1_strategy(game_state)
+            # if len(community_cards) == 0 and len(my_cards) == 2:
+            #     self.round_1_strategy(game_state)
             
-            if len(community_cards) == 3:
-                self.round_2_strategy(game_state)
+            # if len(community_cards) == 3:
+            #     self.round_2_strategy(game_state)
 
-            if len(community_cards) == 4:
-                self.round_3_strategy(game_state)
+            # if len(community_cards) == 4:
+            #     self.round_3_strategy(game_state)
 
-            if len(community_cards) == 5:
-                self.round_4_strategy(game_state)
+            # if len(community_cards) == 5:
+            #     self.round_4_strategy(game_state)
 
             if len(community_cards) == 0:
                 return game_state['small_blind'] * 2
@@ -60,25 +60,25 @@ class Player:
         except:
             return 1
 
-    def round_1_strategy(self, game_state):
-        pass
+    # def round_1_strategy(self, game_state):
+    #     pass
 
-    def round_2_strategy(self, game_state):
-        pass
+    # def round_2_strategy(self, game_state):
+    #     pass
 
-    def round_3_strategy(self, game_state):
-        pass
+    # def round_3_strategy(self, game_state):
+    #     pass
 
-    def round_4_strategy(self, game_state):
-        pass
+    # def round_4_strategy(self, game_state):
+    #     pass
 
-    def round_5_strategy(self, game_state):
-        pass
+    # def round_5_strategy(self, game_state):
+    #     pass
 
     def showdown(self, game_state):
         pass
 
-    def has_n_tuple_with_my_card(my_cards, all_cards, n):
+    def has_n_tuple_with_my_card(self, my_cards, all_cards, n):
         card_groups = dict()
         my_values = [card['value'] for card in my_cards]
 
@@ -93,6 +93,8 @@ class Player:
                 return True
 
         return False
+
+    #def has_flush_with_one_of_my_cards(self)
         
     def is_pair(self, card1, card2):
         return card1['rank'] == card2['rank']
