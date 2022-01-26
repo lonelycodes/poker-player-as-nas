@@ -19,6 +19,8 @@ class Player:
         print('call_amount:', call_amount)
         print('minimum_raise', game_state['minimum_raise']) 
     
+        if (self.is_high_card(my_cards[0]) or self.is_high_card(my_cards[1])):
+            return my_player['stack']
 
         if (self.has_n_tuple_with_my_card(my_cards, all_cards, 4) != None):
             return my_player['stack']
