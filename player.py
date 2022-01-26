@@ -1,3 +1,5 @@
+import itertools
+
 class Player:
     VERSION = "Default Python folding player"
 
@@ -21,6 +23,14 @@ class Player:
                         return call_amount + 1
                     else:
                         return 0
+
+            if self.is_high_card(my_cards[0]) and self.is_high_card(my_cards[1]):
+                if(call_amount < 300): 
+                        return call_amount + 1
+
+            if self.is_high_card(my_cards[0]) or self.is_high_card(my_cards[1]):
+                if(call_amount < 200): 
+                        return call_amount + 1
 
             if len(community_cards) == 0 and len(my_cards) == 2:
                 self.round_1_strategy(game_state)
@@ -65,8 +75,15 @@ class Player:
     def showdown(self, game_state):
         pass
 
-    def has_triplet(cards):
-        return False
+    # def has_triplet_with_my_card(my_cards, all_cards):
+    #     card_groups = dict()
+    #     for card in all_cards:
+    #         card_groups[]
+
+    #     # returncards.GroupBy(card=> card.Rank).Count(group=> group.Count() == 2) == 1;
+    #     x = dict((k, list(g)))
+        
+
 
     def is_pair(self, card1, card2):
         return card1['rank'] == card2['rank']
