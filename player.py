@@ -1,5 +1,6 @@
 import urllib.request
 import urllib.parse
+import json 
 
 class Player:
     VERSION = "Default Python folding player"
@@ -45,7 +46,7 @@ class Player:
                 print('betting for 2 high cards: ', call_amount + game_state['minimum_raise'] + 10)
                 return call_amount + game_state['minimum_raise'] + 10
 
-        if (self.is_high_card(my_cards[0]) and self.is_high_card(my_cards[1])) and len(community_cards) == 0:
+        if (self.is_high_card(my_cards[0]) or self.is_high_card(my_cards[1])) and len(community_cards) == 0:
             if(call_amount < 300 and my_player['bet'] > 0.1 * my_player['stack']): 
                 return call_amount
 
@@ -136,10 +137,12 @@ class Player:
         print("HIGH CARD DETECTOR: ", card['rank'], is_high_card)
         return is_high_card
 
-    # def get_odds(self, cards):
-    #     url = "http://rainman.leanpoker.org/rank?cards=" + cards
-    #     f = urllib.request.urlopen(url)
-    #     print(f.read().decode('utf-8'))
+    def get_odds(self, cards):
+
+        url = "http://rainman.leanpoker.org/rank?cards=" + json.dumps(cards)
+        print(url)
+        f = urllib.request.urlopen(url)
+        print(f.read().decode('utf-8'))
         
         
     
