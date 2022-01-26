@@ -9,14 +9,17 @@ class Player:
             my_player = game_state['players'][game_state['in_action']]
             my_cards = my_player['hole_cards']
             community_cards = game_state['community_cards']
+            all_cards =  my_cards + community_cards
             current_round = game_state['round']
             print('current_round:', current_round)
             print('my_cards:', my_cards)
             print('community_cards:', community_cards)
 
+            if (self.has_n_tuple_with_my_card(my_cards, all_cards, 3)):
+                return my_player['stack']
+
             if (self.is_pair(my_cards[0], my_cards[1])):
                 if self.is_high_card(my_cards[0]):
-                    print('bet (is high pair): 1000')
                     return my_player['stack']
                 else:
                     if(call_amount < 500): 
@@ -45,14 +48,11 @@ class Player:
                 self.round_4_strategy(game_state)
 
             if len(community_cards) == 0:
-                print('bet: ', game_state['small_blind'] * 2)
                 return game_state['small_blind'] * 2
 
             if(call_amount > 100):    
-                print('bet (call amount larger than 100): 0')
                 return 0
 
-            print('bet (call_amount): ', call_amount)
             return call_amount
         except:
             return 1
@@ -75,7 +75,7 @@ class Player:
     def showdown(self, game_state):
         pass
 
-    def has_triplet_with_my_card(my_cards, all_cards):
+    def has_n_tuple_with_my_card(my_cards, all_cards, n):
         card_groups = dict()
         my_values = [card['value'] for card in my_cards]
 
@@ -86,13 +86,11 @@ class Player:
                 card_groups[card['value']] = 1
 
         for key in card_groups.keys():
-            if card_groups[key] == 3 and key in my_values:
+            if card_groups[key] == n and key in my_values:
                 return True
 
         return False
         
-
-
     def is_pair(self, card1, card2):
         return card1['rank'] == card2['rank']
 
