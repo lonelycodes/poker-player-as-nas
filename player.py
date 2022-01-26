@@ -72,13 +72,13 @@ class Player:
 
     def has_n_tuple_with_my_card(self, my_cards, all_cards, n):
         card_groups = dict()
-        my_values = [card['value'] for card in my_cards]
+        my_values = [card['rank'] for card in my_cards]
 
         for card in all_cards:
-            if card['value'] in card_groups.keys():
-                card_groups[card['value']] += 1
+            if card['rank'] in card_groups.keys():
+                card_groups[card['rank']] += 1
             else:
-                card_groups[card['value']] = 1
+                card_groups[card['rank']] = 1
 
         for key in card_groups.keys():
             if card_groups[key] == n and key in my_values:
