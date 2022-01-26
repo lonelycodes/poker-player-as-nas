@@ -6,6 +6,7 @@ class PlayerTests(unittest.TestCase):
         player = Player()
         game_state = {
             'in_action': 0,
+            'small_blind': 3,
             'players': [
                 { 'hole_cards': [
                         {
@@ -27,6 +28,7 @@ class PlayerTests(unittest.TestCase):
         player = Player()
         game_state = {
             'in_action': 0,
+            'small_blind': 3,
             'players': [
                 { 
                     'hole_cards': [
@@ -44,7 +46,7 @@ class PlayerTests(unittest.TestCase):
                 
             }
         
-        self.assertEqual(player.betRequest(game_state), 10)
+        self.assertEqual(player.betRequest(game_state), 3)
 
 if __name__ == '__main__':
     unittest.main()
