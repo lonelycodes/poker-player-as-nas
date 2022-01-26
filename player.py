@@ -15,6 +15,7 @@ class Player:
             print('my_cards:', my_cards)
             print('community_cards:', community_cards)
             print('call_amount:', call_amount)
+            print('minimum_raise', game_state['minimum_raise']) 
 
             if (self.has_n_tuple_with_my_card(my_cards, all_cards, 4)):
                 return my_player['stack']
