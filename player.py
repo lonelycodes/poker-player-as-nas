@@ -13,13 +13,14 @@ class Player:
                 return game_state['small_blind'] * 2
 
             print('call amount: ', call_amount)
-            if(call_amount > 100):    
-                print('bet (call amount larger than 100): 0')
-                return 0
 
             if (self.is_pair(my_cards[0], my_cards[1])):
                 print('bet (is pair): 200')
                 return 200
+
+            if(call_amount > 100):    
+                print('bet (call amount larger than 100): 0')
+                return 0
 
             print('bet (small blind): ', game_state['small_blind'])
             return game_state['small_blind']
