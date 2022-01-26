@@ -20,6 +20,9 @@ class Player:
         if (self.has_n_tuple_with_my_card(my_cards, all_cards, 4) != None):
             return my_player['stack']
 
+        if (self.has_flush_with_both_of_my_cards(my_cards, all_cards)):
+            return my_player['stack']
+
         if (self.has_n_tuple_with_my_card(my_cards, all_cards, 3) != None):
             return my_player['stack']
 
