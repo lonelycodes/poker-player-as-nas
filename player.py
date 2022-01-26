@@ -33,8 +33,8 @@ class Player:
 
             if self.is_high_card(my_cards[0]) and self.is_high_card(my_cards[1]):
                 if(call_amount < 300): 
-                        print('betting for 2 high cards: ', call_amount + game_state['minimum_raise'] + 10)
-                        return call_amount + game_state['minimum_raise'] + 10
+                    print('betting for 2 high cards: ', call_amount + game_state['minimum_raise'] + 10)
+                    return call_amount + game_state['minimum_raise'] + 10
 
             if self.is_high_card(my_cards[0]) or self.is_high_card(my_cards[1]):
                 if(call_amount < 200):
@@ -97,19 +97,21 @@ class Player:
 
         return False
 
-    # def has_flush_with_one_of_my_cards(self, my_cards, all_cards):
-    #     suits = { 'clubs': 0, 'spades': 0, 'hearts': 0, 'diamonds': 0 }
-    #     my_suits = [card['suit'] for card in my_cards]
-    #     for card in all_cards:
-    #         if card['suit'] in my_suits:
-    #             return True
-    #     return False
+    def has_flush_with_one_of_my_cards(self, my_cards, all_cards):
+        suits = { 'clubs': 0, 'spades': 0, 'hearts': 0, 'diamonds': 0 }
+        my_suits = [card['suit'] for card in my_cards]
+        for card in all_cards:
+            if card['suit'] in my_suits:
+                return True
+        return False
         
     def is_pair(self, card1, card2):
         return card1['rank'] == card2['rank']
 
     def is_high_card(self, card):
-        return card['rank'] in ['A', 'K', 'Q', 'J', '10']
+        is_high_card = card['rank'] in ['A', 'K', 'Q', 'J', '10']
+        print("HIGH CARD DETECTOR: ", card['rank'], is_high_card)
+        return is_high_card
 
 
     
