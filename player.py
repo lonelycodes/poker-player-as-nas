@@ -20,17 +20,17 @@ class Player:
         print('minimum_raise', game_state['minimum_raise']) 
 
         if (self.has_n_tuple_with_my_card(my_cards, all_cards, 4) != None):
-            return my_player['stack']
+            return call_amount + game_state['minimum_raise'] + 1
 
         if (self.has_flush_with_both_of_my_cards(my_cards, all_cards)):
-            return my_player['stack']
+            return call_amount + game_state['minimum_raise'] + 1
 
         if (self.has_n_tuple_with_my_card(my_cards, all_cards, 3) != None):
-            return my_player['stack']
+            return call_amount + game_state['minimum_raise'] + 1
 
         if (self.is_pair(my_cards[0], my_cards[1])):
             if self.is_high_card(my_cards[0]):
-                return my_player['stack']
+                return call_amount + game_state['minimum_raise'] + 1
             else:
                 if(call_amount < 500) and my_player['bet'] < 0.2 * my_player['stack']: 
                     return call_amount + game_state['minimum_raise'] + 1
